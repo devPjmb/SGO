@@ -1,0 +1,328 @@
+@media screen and (max-width: 1180px)
+{
+	.img-size-logo {
+	    height: 85px !important;
+	    width: 130px;
+	}
+	.titulo-contact
+	{
+		font-size: 65px;
+	}
+	.ul-subir
+	{
+		right: -15px;
+	}
+}	
+@media screen and (min-width: 1085px){
+	#certificaciones{
+	height: 556.367px;
+	}
+}
+@media screen and (min-width: 1080px)
+{
+	.bg-crt
+	{
+		height: unset;
+	}
+	#noticias .section
+	{
+		margin-top: unset;
+	}
+}
+@media screen and (min-width: 993px)
+{
+	.carruselprincipal .slick-list
+	{
+		height: 100vh !important;
+	}
+
+	#contactanos{
+	height: 787px;
+	}
+
+	#noticias{
+	height: 1233.57px;
+	}
+
+}
+@media screen and (max-width: 993px)
+{
+ 	#home
+ 	{
+ 		padding-top: 75px !important;
+ 	}
+ 	.slick-dots
+ 	{
+ 		bottom: -25px !important;
+ 	}
+ 	#nosotros .imagen-card-alt2{
+		width: auto;
+	}
+	#nosotros .imagen-card-alt2 div{
+		height: auto;
+	}
+
+	#nosotros{
+		padding:0px;
+	}
+	#certificaciones{
+	background: #BCE6A6;
+	}
+	.dg-certificaciones{
+		visibility: hidden;
+	}
+}
+@media screen and (max-width: 992px)
+{
+	.horiz
+	{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.centrado
+	{
+		position: relative;
+		left: 0% !important;
+		right: 0% !important;
+		top: -42px;
+	}
+	.bajar-contenido
+	{
+		position: initial;
+		top: 0px;
+	}
+	.bg-prod
+	{
+		background: #BCE6A6;
+	}
+
+	#noticias .margis{
+		margin: 0px !important;
+	}
+
+	#contactanos.bg-cont{
+		clip-path: unset;
+	}
+
+}
+@media screen and (max-width: 930px)
+{
+	.carousel-img-size
+	{
+		width: 450px !important;
+	}
+	.centrado-card
+	{
+		left: 300px !important;
+	}
+}
+@media screen and (max-width: 900px)
+{
+	.centrado-card
+	{
+		left: 230px !important;
+	}
+}
+@media screen and (max-width: 750px)
+{
+	.carousel-img-size
+	{
+		width: 350px !important;
+	}
+	.carousel-img-size-alt
+	{
+		width: 420px !important;
+	}
+	.card-image-alt
+	{
+		width: 350px;
+	}
+	.centrado-card
+	{
+		left: 200px !important;
+	}
+}
+@media screen and (max-width: 700px)
+{
+	.centrado-card
+	{
+		left: 160px !important;
+	}
+}
+@media screen and (max-width: 685px)
+{
+	.carousel-img-size-alt
+	{
+		width: 380px !important;
+	}
+	.centrado-card
+	{
+		left: 140px !important;
+	}
+}
+@media screen and (max-width: 600px)
+{
+	.carousel-img-size-alt
+	{
+		width: 350px !important;
+	}
+	.centrado-card
+	{
+		left: 100px !important;
+	}
+	.card-image-alt
+	{
+		width: 579px;
+	}
+	.test7
+	{
+		padding: 0px !important;
+	}
+	.test8
+	{
+		padding: 0px !important;
+	}
+	.test9
+	{
+		padding: 0px !important;
+	}
+	#nuestrasmarcas .slick-track{}
+
+	#nosotros .horizontal,  #inocali #card-tabs-h0{
+		display: block !important;
+	}
+	#nosotros .horizontal .card-image, #inocali .horizontal .card-image,  #inocali #card-tabs-h0 .card-image{
+		max-width: 100% !important;
+	}
+	#nosotros .horizontal.card, #inocali #card-tabs-h0{
+		height: unset;
+	}
+	#nosotros .card-content .row .mcenter {
+		padding: 10px;
+		overflow-y: scroll;
+}
+}
+@media screen and (max-width: 580px)
+{
+	.card-image-alt
+	{
+		width: 560px;
+	}
+	.carousel-img-size
+	{
+		width: 300px !important;
+	}
+	.centrado-card
+	{
+		left: 50px !important;
+	}
+}
+@media screen and (max-width: 540px)
+{
+	.card-image-alt
+	{
+		width: 540px;
+	}
+	.carousel-img-size-alt
+	{
+		width: 320px !important;
+	}
+}
+@media screen and (max-width: 480px)
+{
+	.card-image-alt
+	{
+		width: 460px;
+	}
+	.carousel-img-size
+	{
+		width: 280px !important;
+	}
+	.carrusel-alt
+	{
+		height: 250px !important
+	}
+	.carousel-item-alt
+	{
+		top: 0 !important;
+	}
+	.carousel-img-size-alt
+	{
+		width: 290px !important;
+		top: -55px !important;
+	}
+	.img-size-cont
+	{
+		width: 300px;
+		height: 240px !important;
+	}
+	.titulo-contact 
+	{
+    	font-size: 40px;
+	}
+	.centrado-card
+	{
+		left: 0px !important;
+	}
+}
+@media screen and (max-width: 415px)
+{
+/*	.card-image-alt
+	{
+		width: 395px;
+	}*/
+	.card-image-alt-o
+	{
+		width: 391px;
+	}
+	.carousel-img-size-alt
+	{
+		width: 280px !important;
+	}
+	.card-image-alt
+	{
+		height: 180px;
+		width: 280px;
+	}
+}
+@media screen and (max-width: 400px)
+{
+	.card-image-alt
+	{
+		width: 380px;
+	}
+	.carousel-img-size-alt
+	{
+		width: 255px !important;
+	}
+	.titulo-ntc
+	{
+		font-size: 60px;
+	}
+}
+@media screen and (max-width: 390px)
+{
+	.card-image-alt-o
+	{
+		width: 369px;
+	}
+	.card-image-alt
+	{
+		width: 370px;
+	}
+	.carousel-img-size
+	{
+		width: 200px !important;
+	}
+}
+@media screen and (max-width: 320px)
+{
+	.card-image-alt
+	{
+		width: 300px;
+	}
+	.card-image-alt-o
+	{
+		width: 299px;
+	}	
+}

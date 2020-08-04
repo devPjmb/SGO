@@ -1,0 +1,250 @@
+<?php
+ 
+use frontend\assets\AppAssetLayoutAll;
+AppAssetLayoutAll::register($this);
+ 
+use frontend\assets\AppAsset;
+use yii\helpers\Html;
+use yii\bootstrap\Button;
+use yii\bootstrap\ActiveForm;
+//use DateTime;
+
+use common\components\chosen\Chosen;
+use common\components\datatables\DataTables;
+$this->title = 'Orden de Produccion';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+ 
+ 
+<div class="HomeRole">
+    <div style="width: 100%; align-items: center; justify-content: center; display: flex;">
+         <img src="<?= Yii::getAlias("@web"); ?>/images/logo.png" class="img-rounded" style=";width: auto; height: 150px;">
+    </div>
+    <br> 
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading" style="display: flex;justify-content: center;align-items: center; flex-direction: column; position: relative; ">
+                        <h4 style="color: var(--color-principal);">
+                            <i class="fa fa-user"></i> <?= Html::encode($this->title)." Numero "; ?>
+                        </h4> 
+                        <h1> <?= $OrderData->OrderID; ?> </h1>
+                         <?= Html::submitButton('Aplicar Cambios', ['class' => 'btn btn-color-especial click-confirm', "style"=>'float:right; position:absolute; right: 5%; z-index: 2;', 'confirm-exec'=>'SendChanges();']) ?>
+                         <!-- <button class="ctest">test</button> -->
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-data-user">
+                            <!-- data client -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3><i class="fa fa-address-card-o"></i> Datos de Orden.</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            Cliente : <?= $OrderData->clients->FullName; ?>
+                                        </div>
+                                        <div class="row">
+                                            Telefonos : [ <?= $OrderData->clients->PhoneNumber; ?> ] <?= !empty($OrderData->clients->PhoneNumber2)? "[ ".$OrderData->clients->PhoneNumber2." ]" :'' ; ?>
+                                        </div>
+                                        <div class="row">
+                                            Direcciones : [ <?= $OrderData->clients->Address; ?> ] <?= !empty($OrderData->clients->Address2)? "[ ".$OrderData->clients->Address2." ]": ''; ?>
+                                        </div>
+                                        <div class="row">
+                                            Descripcion : <?= $OrderData->Description; ?>
+                                        </div>
+                                        <div class="row">
+                                            Archivo : <?= $OrderData->File; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- end data client -->
+
+                            <?php   $BlockButtons = false; 
+                             foreach ( $OrderData->orderByPhase as $key => $d): ?>
+                                <!-- data phases -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="background-color:<?= $d->phases->UseColor; ?> ; ">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h3><i class="fa <?= $d->phases->Icon; ?>"></i> Fase <b><?= $d->phases->Name; ?>.</b></h3>
+                                                <?php if(!empty($d->account)): ?>
+                                                <h6><i class="fa fa-user"></i> Usuario asignado <b><?= $d->account->userAccount->UserName; ?>.</b></h6>
+                                                <?php endif; ?>
+                                                <h5> Establecer fecha de entrega? <input type="checkbox" value="<?= $d->OrderByPhaseID; ?>" <?= !empty($d->OrderDate)? 'checked':''; ?> name=""> </h5>
+                                                <?php if(!empty($d->OrderDate)){ 
+                                                    $var = new DateTime("".$d->OrderDate."");
+                                                   echo  '<h6> <i>Tiene fecha de entrega establecida para el : <b>'.$var->format('d/m/Y').'</b></i> </h6>';} ?>
+                                            </div>
+                                            <div class="col-sm-6" style="display: flex; flex-wrap: wrap; flex-direction: row-reverse;">
+                                                <div class="box-button" id="clbox-<?= $key; ?>" oid="<?= $d->OrderByPhaseID; ?>">
+                                                    <?php if(!$BlockButtons): $BlockButtons = true; ?>
+                                                            <?php switch (TRUE) {
+                                                                 case ($d->Status =='0' || $d->Status =='1'): ?>
+                                                                        <button" st="2" idcl="<?= $key; ?>" class=" btn btn-info advance">Iniciar</button>
+                                                            <?php break;
+                                                                     case ($d->Status == '2'):  ?>
+                                                                            <button st="3" idcl="<?= $key; ?>" class="btn btn-warning advance">Detener</button> <button st="4" idcl="<?= $key; ?>" class="btn btn-success completar">Completar</button>
+                                                            <?php break;
+                                                                    case ($d->Status == '3'): ?>
+                                                                         <button st="2" idcl="<?= $key; ?>" class="btn btn-info advance">Continuar</button>
+                                                            <?php break;
+                                                                    default: $BlockButtons = false; ?>
+                                                                    <button class="btn btn-success advance">Terminado</button>
+                                                            <?php break; } ?>
+                                                    <?php endif; ?>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="panel-body" style="display: flex;justify-content: center;align-items: center; flex-direction: column;">
+                                        <!-- cuando establescas el calendario deberas bloquearlo si la faseesta terminada asi como bloqueoel textarea -->
+                                        <textarea placeholder="Calendario" cols="100" rows="5"<?= ($d->Status > 3 )? 'disabled' : '' ?> ><?php 
+                                        if(!$d->phases->OnlyUser){
+                                            $FaseData = $d->phases->orderByPhaseRsvGroup; 
+                                            foreach ($FaseData as $Fases):
+                                                      echo "[ Fecha: ".$Fases->OrderDate." Cantidad: ".$Fases->Amount."] ";
+                                            endforeach;
+                                        }else{
+                                            $SpecificPhase = $OrderData->getOrdersSpecificPhaseAndUserForGroup($d->phases->PhaseID,$d->AccountID);
+                                            foreach ($SpecificPhase as $Fases):
+                                                    echo "[ Fecha: ".$Fases->OrderDate." Cantidad: ".$Fases->Amount."] ";
+                                            endforeach;
+                                        }
+                                        ?></textarea>
+                                        <div>
+                                        <button class="selectDay" date="20-5-2019" oid="<?= $d->OrderByPhaseID; ?>"> Dia 1 [20-5-2019]</button>
+                                        <button class="selectDay" date="21-5-2019" oid="<?= $d->OrderByPhaseID; ?>"> Dia 2 [21-5-2019]</button>
+                                        <button class="selectDay" date="22-5-2019" oid="<?= $d->OrderByPhaseID; ?>"> Dia 3 [22-5-2019]</button>
+                                        <button class="selectDay" date="23-5-2019" oid="<?= $d->OrderByPhaseID; ?>"> Dia 4 [23-5-2019]</button>
+                                        <button class="selectDay" date="24-5-2019" oid="<?= $d->OrderByPhaseID; ?>"> Dia 5 [24-5-2019]</button>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <!-- end data phases -->
+                        <?php endforeach; ?>
+                        </div>
+                    </div>
+                     <div class="panel-footer" style="display: flex;justify-content: center;align-items: center;">
+                       <?= Html::submitButton('Aplicar Cambios', ['class' => 'btn btn-color-especial click-confirm','confirm-exec'=>'SendChanges();']) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php 
+if (Yii::$app->session->hasFlash('success')):
+    $this->registerJS('
+        $(document).ready(function(){
+            _Message("success","¡Exito!","'.Yii::$app->session->getFlash('success').'");
+        });
+
+        ');
+endif;
+
+if (Yii::$app->session->hasFlash('error')):
+
+    $this->registerJS('
+        $(document).ready(function(){
+            _Message("error","¡Error!","'.Yii::$app->session->getFlash('error').'");
+        });
+
+        ');
+endif;
+$urlHom = Yii::getAlias('@web');
+$JS = "
+   $('.box-button').on('click','.advance',function(){
+
+        // console.log('advance');
+       let st = $(this).attr('st');
+       let idcl = $(this).attr('idcl');
+       let oid = $('#clbox-'+idcl).attr('oid');
+       if(Form['index-'+oid] == undefined){
+        Form['index-'+oid] = {};
+        // console.log('undefined');
+       }
+       Form['index-'+oid].Status = st;
+       // console.log(Form);
+
+       switch(st){
+        case '2':
+        // console.log('swich2');
+            $('#clbox-'+idcl).fadeOut('slow',function(){
+                    $('#clbox-'+idcl).html('');
+                    $('#clbox-'+idcl).append('<button st=\"3\" idcl=\"'+idcl+'\" class=\"btn btn-warning advance\">Detener</button>');
+                    $('#clbox-'+idcl).append('<button st=\"4\" idcl=\"'+idcl+'\" class=\"btn btn-success advance\">Completar</button>');
+            });
+            $('#clbox-'+idcl).fadeIn('slow');
+        break;
+        case '3':
+        // console.log('swich3');
+             $('#clbox-'+idcl).fadeOut('slow',function(){
+                    $('#clbox-'+idcl).html('<button st=\"2\" idcl=\"'+idcl+'\" class=\"btn btn-info advance\">Continuar</button>');
+             });
+             $('#clbox-'+idcl).fadeIn('slow');
+        break;
+        case '4':
+        // console.log('swich4');
+            $('#clbox-'+idcl).fadeOut('slow',function(){
+                let idclsg = parseInt(idcl) + 1;
+                $('#clbox-'+idcl).html('');
+                $('#clbox-'+idcl).append('<button class=\"btn btn-success advance\">Terminado</button>');
+                // console.log($('#clbox-'+idclsg))
+                if($('#clbox-'+idclsg) != undefined){
+                    $('#clbox-'+idclsg).html('<button st=\"2\" idcl=\"'+idclsg+'\" class=\"btn btn-info advance\">Iniciar</button>');
+                }
+            });
+            $('#clbox-'+idcl).fadeIn('slow');
+        break;
+
+       }
+
+
+    });
+
+    $('.selectDay').click(function(){
+        // console.log('selectday');
+        let oid = $(this).attr('oid');
+        let st = $(this).attr('Date');
+        if(Form['index-'+oid] == undefined){
+            Form['index-'+oid] = {};
+            // console.log('undefined');
+       }
+       Form['index-'+oid].OrderDate = st;
+       // console.log(Form);
+        });
+
+    $('.ctest').click(function(){
+       console.log(Form);
+    });
+";
+
+$JSHead = "
+
+    var Form = {};
+
+    var SendChanges = function(){
+        let data = JSON.stringify(Form);
+        let Order = ".$OrderID."
+        $.post('".$urlHom."/orders/processorder',{OrderProcess: data, Order:Order},function(r){
+                obj = JSON.parse(r);
+                if(obj.Status == true){
+                    // console.log(obj.Mensaje);
+                    _Message(\"success\",\"¡Exito!\",obj.Mensaje)
+                }else{
+                    // console.log(obj.Mensaje);
+                    _Message(\"error\",\"¡Error!\",obj.Mensaje)
+                }
+            });
+    }
+
+";
+$this->registerJS($JSHead, \yii\web\View::POS_HEAD);
+$this->registerJS($JS);
+?>

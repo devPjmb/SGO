@@ -1,0 +1,65 @@
+ /*imagen actual en modificar post  */
+.img-content {
+    padding: 10px 45px;
+    text-align: center;
+}
+/* fin imagen actual en modificar post */
+
+ /*colocar disable un div en modificar y crear post*/
+.bootstrap-tagsinput .tag [data-role="remove"]{
+	display: none !important;
+}
+.tagsele{
+	cursor: none;
+} 
+/*fin colocar disable un div en modificar y crear post*/
+
+/* modal de tags */
+.check, .tagsele{
+	padding: 0px 10px;
+}
+.check div.ocul{
+	display: contents;
+}
+.list-tag .check label{
+	display: inline-block !important;
+	cursor: pointer !important;
+	color: black !important;
+	position: relative !important;
+	padding: 5px 15px 5px 51px !important;
+	font-size: 1em !important;
+	border-radius: 5px !important;
+	transition: all 0.5s !important;
+}
+
+.list-tag .check label:hover{
+	background: rgba(000,000,000,0.4) !important;
+}
+
+.list-tag .check label:before{
+	content: "";
+	display: inline-block !important;
+	width: 18px !important;
+	height: 18px !important;
+	position: absolute !important;
+	left: 15px !important;
+	border-radius: 50px !important;
+	background: none !important;
+	border: 3px solid black !important;
+}
+.list-tag .check label:before {
+    border-radius: 3px !important; 
+}
+
+.list-tag .check input[type="checkbox"]{
+	display: none !important;
+}
+.list-tag .check input[type="checkbox"]:checked + label:before{
+	display: none !important;
+}
+.list-tag .check input[type="checkbox"]:checked + label{
+	background: black !important;
+	color: white !important;
+	padding: 5px 15px !important;
+}
+/*fin modal de tags

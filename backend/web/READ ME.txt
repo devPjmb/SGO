@@ -1,0 +1,8 @@
+####################################
+#    The files originally located  #
+#    in this folder, are in the    #
+#    cpanel folder located at the  #
+#    root of the project      	   #
+####################################
+# changes made to simplify the url #
+####################################

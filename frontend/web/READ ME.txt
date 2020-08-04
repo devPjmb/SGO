@@ -1,0 +1,7 @@
+####################################
+#    The files originally located  #
+#    in this folder, are in the    #
+#    root of the project#		   #
+####################################
+# changes made to simplify the url #
+####################################

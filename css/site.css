@@ -1,0 +1,171 @@
+:root {
+    --color-principal: #0f294a;
+    --color-principalhv: #7e98bb;
+    --color-menutext: #fff;
+    --color-butons: #4d7ab3;
+
+}
+
+html,
+body {
+    height: 100%;
+}
+.btn-color-especial{background: var(--color-butons); color:white;}
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view td {
+    white-space: nowrap;
+}
+
+.grid-view .filters input,
+.grid-view .filters select {
+    min-width: 50px;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.nav li > form > button.logout {
+    padding: 15px;
+    border: none;
+}
+
+@media(max-width:767px) {
+    .nav li > form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 15px;
+    }
+}
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
+    text-decoration: none;
+}
+
+.nav > li > form > button.logout:focus {
+    outline: none;
+}
+
+div#datatables_w0_length{
+    color: black;
+}
+
+div.dataTables_length select{
+    border: solid 1px var(--color-principal);
+}
+
+table#datatables_w0{
+    border: solid 1px var(--color-principal);
+}
+table#datatables_w0 th{
+    border: solid 1px var(--color-principal);
+}
+
+.form-control{
+    border: solid 1px var(--color-principal);
+}
+
+.dataTables_wrapper .dataTables_filter input{
+    border: solid 1px var(--color-principal);
+}
+.pagination a{
+    color: black !important;
+}
+.pagination > .active > a{
+    background-color: var(--color-butons) !important;
+    border: solid 1px var(--color-principal) !important;
+}
+.page-sidebar .page-sidebar-menu>li.active>a{
+    background: var(--color-principal) !important;
+}
+.page-sidebar .page-sidebar-menu>li:hover>a{
+    background: var(--color-principal) !important;
+}
+
+.page-sidebar .page-sidebar-menu .sub-menu>li.active>a{
+    background: var(--color-principal) !important;
+}
+.page-sidebar .page-sidebar-menu .sub-menu>li:hover>a{
+    background: var(--color-principal) !important;
+}

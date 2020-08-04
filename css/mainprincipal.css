@@ -1,0 +1,180 @@
+/*Estilo de menu*/
+.menu
+{
+	background: rgba(231, 231, 231, 0.86);
+	border-bottom: solid #40bf00 4px;
+}
+.mover
+{
+	margin-right: 10px;
+	position: relative;
+	top: -6px;
+}
+.mover1
+{
+	margin-right: -3px;
+	position: relative;
+	top: -6px;
+}
+.mover2
+{
+	margin-right: -6px;
+	display: flex;
+}
+.grid
+{
+	margin-bottom: -45px;
+}
+.font1
+{
+	margin-top: -67px;
+	margin-left: 30px;
+}
+.font2
+{
+	margin-top: -62px;
+	margin-left: 30px;
+}
+/*estilos para las letras del menu*/
+.letra
+{
+	font-size: 10px;
+}    
+.mover3{
+	margin-right: 6px;
+}
+.texto
+{
+	color: #000 !important;
+	padding-top: 5px !important;
+}
+.texto-more
+{
+	color: #000 !important;
+	padding-top: 8px !important;
+}
+.tab a span:hover
+{
+	border-bottom: 2px solid #006C30;
+	color: #006C30;
+}
+.tab a span:active
+{
+	border-bottom: 2px solid #red;
+	color: #006C30;
+}
+.submenu
+{
+	/*background: repeating-linear-gradient(46deg, transparent 0, transparent 209px, #e7e7e7 0, #e7e7e7 100%);*/
+	margin-top: -27px;
+}
+.ul-subir
+{
+	margin-top: -13px;
+}
+.efecto-main
+{
+	background: repeating-linear-gradient(45deg, transparent 0, transparent 40%, #40bf00 0, #40bf00 100%);
+	border-top: 15px solid #40bf00;
+}
+.fixed
+{
+	height: 0px;
+}
+.img-size-logo
+{
+	height: 110px !important;
+	width: 170px;
+	margin-left: 100px;
+	margin-top: -17px;
+}
+.tmn-txt
+{
+	font-size: 13px;
+}
+.color-bars
+{
+	color: #40BF00;
+}
+.logo-subm
+{
+	background: rgba(255,255,255,0.3);
+}
+.bg-subm
+{
+	background: #40BF00;
+}
+/*Fin del estio del menu*/
+/*Estilos footer*/
+.pie
+{
+	background: #40bf00;
+	border-top: 10px solid #006c30;
+}
+.colortext	
+{
+	color: #1e3b27;
+}
+.colorlist
+{
+	color: #006c30;
+}
+.letra-f
+{
+	font-size: 17px;
+}
+.grid-f
+{
+	display: contents;
+}
+.cw-f
+{
+	color: #fff;
+}
+.bg-foo-s
+{
+	background: rgba(255,255,255,0.6);
+	border-radius: 12px;
+	height: 38px;
+}
+#ul-footer
+{
+	display: flex;
+}
+.mayus {
+	text-transform: uppercase;
+}
+#ul-footer > li
+{
+	margin: 0px 10px 0px 0px;
+}
+.colorlist2
+{
+	color: #006c30;
+}
+.bd
+{
+	border-left: 3px solid  #006c30;
+}
+.bi
+{
+	border-right: 3px solid  #006c30;
+}
+.final
+{
+	background: #006c30;
+}
+.letra-fa
+{
+	margin-top: -35px;
+	margin-left: 30px;
+}
+.letra-fa1{
+	margin-top: -22px;
+	margin-left: 30px;
+}
+.img-size
+{
+	height: 100px;
+	width: 130px;
+}

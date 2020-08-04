@@ -1,0 +1,272 @@
+/*ESTILO DE NOSOTROS DE AGROEXPORT*/
+.slider-size
+{
+	height: 700px !important;
+}
+.slides-size
+{
+	height: 650px !important; 
+}
+.bg-us
+{
+	background: #40BF00;
+}
+.tabs
+{
+	background: #BCE6A6;
+	color: #006C30;
+}
+.activess
+{
+	background: #40BF00 !important;
+	color: #fff !important;
+}
+
+.tabs .tab a.us 
+{
+	color: #006C30;
+}
+
+.letra-us
+{
+	color: #fff !important;
+	padding: 20px;
+}
+.titulo-us
+{
+	color: #006C30;
+	font-size: 75px;
+	font-weight: bold;
+}
+.centrado
+{
+	position: relative;
+	left: 10% !important;
+	right: 10% !important;
+}
+/*ESTILOS PRODUCTOS AGROEXPORT*/
+.bg-prod
+{
+	background: repeating-linear-gradient(355deg, white 0, white 16%, #BCE6A6 0, #BCE6A6 85%);
+}
+.size-container
+{
+	width: 78%;
+}
+.titulo-prod
+{
+	color: #006C30;
+	font-size: 75px;
+	font-weight: bold;
+}
+.tabs-prod
+{
+	background: transparent;
+	color: #fff !important;
+}
+.bg-border
+{
+	border: 2px solid #006C30;
+	width: 240px !important;
+	margin-left: 10px !important;
+}
+.tabs .tab a.activarbg.active
+{
+	background: #006C30 !important;
+	color: #fff !important;
+}
+.carousel-img-size
+{
+	width: 450px;
+	top: -50px;
+}
+.carousel-img-size-alt
+{
+	width: 450px;
+	margin-top: 50px;
+}
+/*.card-image-alt
+{
+	width: 400px;
+}*/
+.carrusel-alt
+{
+	/*top: -130px;*/
+	height: 550px;
+}
+.carousel-item-alt
+{
+	top: -120px !important;
+}
+.bg-ca
+{
+	background: #006C30 !important;
+	color: #fff !important;
+}
+.img-size-cont
+{
+	width: 200px !important;
+	height: 200px !important;
+}
+.img-size-cont-carrusel
+{
+	height: 350px !important;
+}
+.fixed-btn-alt
+{
+	position: relative;
+    top: -79px;
+}
+.bg-btn-subm
+{
+	background: #006C30;
+}
+/*ESTILO DE NUESTRAS MARCAS*/
+.titulo-us
+{
+	color: #006C30;
+	font-size: 75px;
+	font-weight: bold;
+}
+/* .img-size-cont
+{
+	width: 450px;
+	height: 300px;
+}
+.carrusel-alt
+{
+	overflow: none !important;
+	height: 550px !important;
+	width: 87% !important;
+
+} */
+/*ESTILO DE CERTIFICACIONES*/
+.bg-lineas-diagonales{
+}
+.bg-crt
+{
+	background: repeating-linear-gradient(
+      6deg,
+      #ffffff 0, #ffffff 21%,
+      #BCE6A6 0, #BCE6A6 100%   
+    );
+}
+.titulo-crt
+{
+	color: #fff;
+	font-size: 100px;
+	font-weight: bold;
+}
+.img-size-crt
+{
+	height: 200px;
+	width: 200px;
+}
+/*ESTILO  DE NOTICAS*/
+.titulo-ntc
+{
+	color: #40BF00;
+	font-size: 75px;
+	font-weight: bold;
+}
+.subtitulo-noti
+{
+	color: #40BF00;
+}
+.subtitulo-blog
+{
+	color: #006C30;
+}
+.img-card-size
+{
+	height: 262px !important;
+}
+.card-cont-size1
+{
+	height: 286px
+}
+.card-cont-size2
+{
+	height: 286px;
+}
+.card-cont-size3
+{
+	height: 58px;
+}
+.btn-noti
+{
+	color: #fff;
+	background-color: #40BF00;
+}
+.btn-blog
+{
+	color: #fff;
+	background-color: #006C30;
+}
+.bg-card
+{
+	background: #E7E7E7;
+}
+/*CONTACTANOS*/
+.bg-cont
+{
+	background: repeating-linear-gradient(
+      10deg, #BCE6A6 0px, #BCE6A6 68%, #ffffff 0px, #ffffff 100%       
+    );
+}
+.btn-size
+{
+	height: 100px;
+	width: 230px;
+	opacity: 0.6;
+	line-height: 20px;
+	display: table-cell;
+}
+.btn-submenu-hide
+{
+	opacity: 0.6;
+}
+.btn-green-light
+{
+	background: #90CE61;
+}
+.btn-green-med
+{
+	background: #01B673;
+}
+.btn-green-dark
+{
+	background: #006c30;
+}
+.ul-position
+{
+	display: flex;
+	position: absolute;
+	top: -150px;
+	right: 60px;
+}
+.ul-position li
+{
+	margin: 0px 10px;
+}
+.cont-btn
+{
+	position: relative;
+}
+.card-tabs-img-size
+{
+	height: 423px;
+	width: 620px;
+}
+.bg-card-stacked
+{
+	background: #E2E2E2;
+}
+
+.img-size-noso{
+	margin: auto !important; 
+	width: auto !important; 
+	height: 350px !important;
+	max-width: 100% !important;
+}
+

@@ -1,0 +1,1 @@
+{"uploadURL":"http:\/\/localhost\/Extreme\/cpanel\/..\/images\/blog\/","uploadDir":"\/Library\/WebServer\/Documents\/Extreme\/cpanel\/..\/images\/blog\/"}

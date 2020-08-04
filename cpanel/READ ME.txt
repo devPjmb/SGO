@@ -1,0 +1,7 @@
+####################################
+#     Cpanel Is the backend Web    #
+#     folder In Original           #
+#     estructure Yii2 Framework    #
+####################################
+# changes made to simplify the url #
+####################################

@@ -1,0 +1,301 @@
+<?php
+ 
+use backend\assets\AppAssetLayoutAll;
+AppAssetLayoutAll::register($this);
+ 
+use backend\assets\AppAsset;
+AppAsset::register($this);
+ 
+use yii\helpers\Html;
+use yii\bootstrap\Button;
+use yii\bootstrap\ActiveForm;
+use common\components\datatables\DataTables;
+$this->title = 'Usuarios ';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+ 
+ 
+<div class="usuario">
+    <h2><?= Html::encode($this->title)?></h2>
+    <?= Html::a('<i class="fa fa-plus"></i> Crear Nuevo Usuario', ['javascript:void(0);'], ['class'=>'btn btn-success', 'data-toggle'=>'modal', 'data-target'=>'#usermodal']) ?>
+   <!--   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#usermodal"><i class="fa fa-plus"></i></button> -->
+     
+    <!-- Formulario Modal -->
+        <div class="modal fade bs-example-modal-lg" id="usermodal" tabindex="-1" role="dialog" aria-labelledby="titulo">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-remove"></i></button>
+                        <h4 class="modal-title" id="titulo">Agregar Usuario</h4>
+                    </div>
+                    <div class="modal-body">
+                        <?php $form = ActiveForm::begin(['id'=>'form-user', 'method'=>'post']) ?>
+                            <div class="form-group col-lg-12">
+                                
+                                <?= $form->field($model,'Correo')->Input(['email'],['class'=>'vali form-control', 'placeholder'=>'Correo'])->label('Correo');?>
+                            </div>
+                             <div class="form-group col-lg-6">
+                              
+                                <?= $form->field($model,'Password')->passwordInput(['class'=>'vali form-control', 'placeholder'=>'Contraseña'])->label('Contraseña');?>
+                            </div>
+                             <div class="form-group col-lg-6">
+                                
+                                <?= $form->field($model,'Password2')->passwordInput(['class'=>'vali form-control', 'placeholder'=>'Contraseña'])->label('Confirmar Contraseña');?>
+                            </div>
+                            <div class="from-group col-lg-6">
+                                <?= $form->field($model,'Rol')->dropDownList(['1'=>'Rol Super Admin', '2'=>'Moderador Blog'])->label('Rol');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                 <?= $form->field($model,'Nombre')->TextInput(['class'=>'vali form-control', 'placeholder'=>'Tu nombre'])->label('Nombre');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                 <?= $form->field($model,'Apellido')->TextInput(['class'=>'vali form-control', 'placeholder'=>'Tu apellido'])->label('Apellido');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                 <?= $form->field($model,'Direccion')->TextInput(['class'=>'vali form-control', 'placeholder'=>'Tu direccion'])->label('Direccion 1');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              
+                                 <?= $form->field($model,'Direccion2')->TextInput(['placeholder'=>'Otra direccion'])->label('Direccion 2');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                 <?= $form->field($model,'Telefono')->TextInput(['class'=>'vali form-control', 'placeholder'=>'Tu telefono'])->label('Telefono 1');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                <?= $form->field($model,'Telefono2')->TextInput(['placeholder'=>'Otro telefono'])->label('Telefono 2');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="">Pais</label>
+                                <select name="ag-pais" class="form-control">
+                                    <option value="" disabled >Elija Un Pais</option>
+                                    <?php foreach($Countrys as $Country => $valor) : ?>
+                                    <option value="<?= $valor['Abbreviation'] ?>"><?= $valor['Name'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                
+                                <?= $form->field($model,'ciudad')->TextInput(['placeholder'=>'Tu ciudad'])->Label('Ciudad');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                               
+                                <?= $form->field($model,'Estado')->TextInput(['placeholder'=>'Tu estado'])->Label('Estado');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                
+                                <?= $form->field($model,'NCM')->TextInput(['placeholder'=>'Nombre de la compañia'])->Label('Nombre de la Compañia');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                
+                                <?= $form->field($model,'Url')->TextInput(['placeholder'=>'Url de la Compañia'])->Label('Url de la Compañia');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                        
+                                <?= $form->field($model,'Code')->TextInput(['placeholder'=>'Codido de Area'])->Label('Codido de Area');?>
+                            </div>
+                        <?php ActiveForm::end(); ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar <i class="fa fa-remove"></i></button>
+                        <button id="btnform-user" type="button" class="btn btn-success">Guardar <i class="fa fa-paper-plane-o"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Fin Formulario Modal -->
+    
+    <!-- Formulario Modificar Modal -->
+        <div class="modal fade" id="usermodalmodi" style="display: none;">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-remove"></i></button>
+                        <h4 class="modal-title" id="titulo">Modificar Usuario</h4>
+                    </div>
+                    <div class="modal-body">
+                         <?php $form = ActiveForm::begin(['id'=>'form-user-modi', 'method'=>'post']) ?>
+                         <input type="hidden" id="ag-id" name="ag-id">
+                            <div class="form-group col-lg-12">
+                                
+                                <?= $form->field($model,'Correo')->TextInput(['id'=>'ag-correo', 'class'=>'form-control valiM', 'readonly' => true])->label('Correo');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                             <div class="from-group col-lg-6">
+                                <?= $form->field($model,'Rol')->dropDownList(['1'=>'Rol Super Admin', '2'=>'Moderador Blog'])->label('Rol');?>
+                            </div>
+                                
+                                 <?= $form->field($model,'Nombre')->TextInput(['id'=>'ag-nombre', 'class'=>'form-control valiM'])->label('Nombre');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                 <?= $form->field($model,'Apellido')->TextInput(['id'=>'ag-apellido', 'class'=>'form-control valiM'])->label('Apellido');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                 <?= $form->field($model,'Direccion')->TextInput(['id'=>'ag-direccion', 'class'=>'form-control valiM'])->label('Direccion 1');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              
+                                 <?= $form->field($model,'Direccion2')->TextInput(['id'=>'ag-direccion2'])->label('Direccion 2');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                 <?= $form->field($model,'Telefono')->TextInput(['id'=>'ag-telefono', 'class'=>'form-control valiM'])->label('Telefono 1');?>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                
+                                <?= $form->field($model,'Telefono2')->TextInput(['id'=>'ag-telefono2'])->label('Telefono 2');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                            <label for="">Pais</label>
+                                <select name="ag-pais" class="form-control">
+                                    
+                                    <option value="" disabled >Elija Un Pais</option>
+                                    <?php foreach($Countrys as $Country => $valor) : ?>
+                                    <option value="<?= $valor['Abbreviation'] ?>"><?= $valor['Name'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                
+                                <?= $form->field($model,'ciudad')->TextInput(['id'=>'ag-ciudad'])->Label('Ciudad');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                               
+                                <?= $form->field($model,'Estado')->TextInput(['id'=>'ag-estado'])->Label('Estado');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                
+                                <?= $form->field($model,'NCM')->TextInput(['id'=>'ag-compania'])->Label('Nombre de la Compañia');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                
+                                <?= $form->field($model,'Url')->TextInput(['id'=>'ag-url-compania'])->Label('Url de la Compañia');?>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <?= $form->field($model,'Code')->TextInput(['id'=>'ag-code'])->Label('Codido de Area');?>
+                            </div>
+                        <?php ActiveForm::end(); ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar <i class="fa fa-remove"></i></button>
+                        <button id="btnform-user-modi" type="button" class="btn btn-success" data-dismiss="modal">Guardar <i class="fa fa-paper-plane-o"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Fin Formulario Modificar Modal -->
+    <br><br>
+    <div class="container-fluid">
+       <!--   <div class="table-responsive">
+             <table class="table table-hover">
+                 <thead>
+                     <tr>
+                         <th class="text-center">ID</th>
+                         <th class="text-center">Correo</th>
+                         <th class="text-center">Nombre</th>
+                         <th class="text-center">Apellido</th>
+                         <th class="text-center">Acciones</th>
+                     </tr>
+                 </thead>
+                 <tbody> -->
+                    <?php 
+
+                        echo DataTables::widget([
+                            'dataProvider' => $AgencysDat,
+
+                            'columns' => [
+                                ['class' => 'yii\grid\SerialColumn',],
+
+                                 [
+                                  'attribute' => 'User Name',
+                                   'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
+                                    'value' => function ($data) {
+                                        return $data->account->userAccount->UserName; // $data['name'] for array data, e.g. using SqlDataProvider.
+                                    },
+                                    'format' => 'text',
+                                    'contentOptions'=>['style'=>' vertical-align:middle;'],
+                                ],
+                                 [
+                                    'attribute' => 'FirstName',
+                                    'format' => 'text',
+                                    'contentOptions'=>['style'=>'vertical-align:middle; min-width: 30%;'],
+                                ],
+                                 [
+                                    'attribute' => 'LastName',
+                                    'format' => 'text',
+                                    'contentOptions'=>['style'=>'vertical-align:middle;'],
+                                ],
+                                [
+                                    'class' => 'yii\grid\ActionColumn',
+                                    'template' => '<div class="btn-group" > {update} {delete} </div>',
+                                    'buttons' => [
+                                        'delete' => function($url, $model){
+                                            return Html::a('<span class="fa fa-trash"></span>', null, [
+                                                'href'=> 'javascript:void(0)',
+                                                'id'=>$model->AccountID,
+                                                'class' => 'btn btn-danger',
+                                                'onclick'=>'eliminarUser(this);',
+                                            ]);
+                                        },
+                                        'update' => function($url, $model){
+                                            return Html::a('<span class="fa fa-edit"></span>', null, [
+                                                'href'=> 'javascript:void(0);',
+                                                'id'=>$model->AccountID,
+                                                'class' => 'btn btn-info',
+                                                'data-toggle'=>'modal',
+                                                'data-target'=>'#usermodalmodi',
+                                                'onclick' => 'modificarUser(this);',
+                                            ]);
+                                        }
+                                       
+                                    ],
+                                    'contentOptions'=>['style'=>'min-width: 100px; text-align: center; vertical-align:middle;'],
+                                ],
+                            ],
+
+                            'clientOptions' => [
+                                "lengthMenu"=> [[10,20,-1], [10,20,Yii::t('app',"All")]],
+                                "info"=>false,
+                                "retrieve" => true,
+                                "responsive"=>'true', 
+                                "dom"=> 'lfTrtip',
+                                "tableTools"=>[
+                                    "aButtons"=> [  
+                                        
+                                    ]
+                                ]
+                            ],
+                        ]);
+                    ?>
+
+
+                    <?php // foreach($Agencys as $Agency => $VAgency): 
+                         //   foreach($UserAccounts as $usuario => $VUser):
+                        //    if ($VAgency['AccountID'] == $VUser['AccountID']){
+                    ?>
+                   <!--   <tr>
+                         <td class="text-center"><?= $VUser['AccountID']?></td>
+                         <td class="text-center"><?= $VUser['UserName'] ?></td>
+                         <td class="text-center"><?= $VAgency['FirstName']?></td>
+                         <td class="text-center"><?= $VAgency['LastName']?></td>
+                         <td class="text-center">
+                             <a id="<?= $VUser['AccountID']?>" onclick="modificarUser(this);" data-toggle="modal" data-target="#usermodalmodi"><i class="fa fa-pencil fa-2x"></i></a>
+                            <a id="<?= $VUser['AccountID']?>" onclick="eliminarUser(this);" href=""><i class="fa fa-trash fa-2x"></i></a>
+                         </td>
+                     </tr> -->
+                    <?php 
+                            //}
+                          //  endforeach;
+                        //    endforeach;
+                    ?>
+                <!--    </tbody>
+            </table>
+        </div>
+    </div>-->
+</div> 

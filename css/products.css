@@ -1,0 +1,191 @@
+	
+	#Products-Container {
+
+		display: -webkit-box;
+
+		display: -ms-flexbox;
+
+		display: flex;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
+		-ms-flex-pack: distribute;
+		    justify-content: space-around;
+		padding: 10px;
+
+	}
+
+	/*PANEL*/
+
+	.card-panel {
+
+		display: -webkit-box;
+
+		display: -ms-flexbox;
+
+		display: flex;
+		width: 400px;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
+		-webkit-box-pack: end;
+		    -ms-flex-pack: end;
+		        justify-content: flex-end;
+		background: #006c30;
+		padding: 0 !important;
+
+	}
+
+	.card-panel:hover {
+
+		-webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+		        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+	}
+
+	/*CONTENEDOR DE IMAGEN*/
+
+	.card-image {
+
+		width: 400px;
+		height: 250px;
+		background-position: center !important;
+		background-size: cover !important;
+		padding-top: 18px;
+
+	}
+
+	.card-text {
+
+		color: white;
+		width: 400px;
+		padding-left: 15px;
+
+	}
+
+	.card-text h3 {
+
+		-o-text-overflow: ellipsis;
+
+		   text-overflow: ellipsis;
+		overflow: hidden;
+		max-width: 80%;
+		text-shadow: 0 0 1px black;
+
+	}
+
+	.card-distribution {
+
+		padding-left: 15px;
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-orient: vertical;
+	    -webkit-box-direction: normal;
+	        -ms-flex-direction: column;
+	            flex-direction: column;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
+
+	}
+
+	.card-distribution > div {
+
+		padding: 5px 0px;
+		padding-left: 5px;
+		background: rgba(0, 108, 48, 0.75);
+		border-radius: 2px;
+		width: 125px;
+		font-weight: 600;
+		font-size: 12px;
+		color: rgb(255, 255, 255);
+		margin-bottom: 2px;
+		text-shadow: 0 0 1px black;
+		line-height: 15px;
+		text-transform: capitalize;
+	}
+
+	/*CONTENEDOR DE LOS MESES (EL QUE POSICIONA)*/
+	
+	.Months {
+
+		position: absolute;
+		-ms-flex-item-align: center;
+		    align-self: center;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+		-webkit-box-align: end;
+		    -ms-flex-align: end;
+		        align-items: flex-end;
+
+	}
+	/* MES*/
+	
+	.Month {
+
+   	    -webkit-transition: width 1s;
+
+   	    -o-transition: width 1s;
+
+   	    transition: width 1s;
+	    display: block;
+	    white-space: nowrap;
+	    overflow: hidden;
+	   	width: 45px;
+	    cursor: pointer;
+	    margin-bottom: 1px;
+
+	}
+	/*MES (ACCIÓN QUE ACTIVA LA TRANSICION)*/
+	.Month:hover {
+	    width: 150px;
+    }
+	/*TEXTO DEL MES (ENERO..FEBRERO..DICIEMBRE)*/
+
+	.Month-Text {
+
+		display: inline-block;
+		z-index: 10;
+		padding: 2px;
+		padding-left: 10px;
+		position: relative;
+		background: #ffd752;
+		border-radius: 5px;
+		width: 45px;
+    	-webkit-clip-path: polygon(5% 0%, 100% 0%, 75% 100%, 5% 100%);
+    	        clip-path: polygon(5% 0%, 100% 0%, 75% 100%, 5% 100%);
+		
+
+	}
+	.Text-Min {
+		display: block;
+		text-shadow: 0 0 1px black;
+	}
+
+	/*PRIORIDAD DEL MES */
+
+	.Month-Priority {
+
+       	width: 130px;
+	    display: inline-block;
+	    padding-left: 30px;
+	    position: relative;
+	    z-index: 1;
+	    right: 30px;
+	    top: 1px;
+	    border-radius: 3px;
+	    text-shadow: 0 0 1px black;
+
+	}
+
+	@media only screen and (max-width: 420px) {
+		.card-panel {
+	
+			width: 300px;
+
+		}
+	}
