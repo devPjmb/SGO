@@ -43,25 +43,26 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="row-fluid">
                                         <div class="form-group">
                                             <div class="col-sm-1">
-                                                <?= $form->field($modelOrder, 'Identify')->textInput(['class' => 'form-control']); ?>
+                                                <?= $form->field($modelOrder, 'Identify')->textInput(['class' => 'form-control', 'id' => 'Cidentify']); ?>
                                             </div>
-                                            <div class="col-sm-11">
+                                            <!-- <div class="col-sm-11">
                                                 <?= $form->field($modelOrder, 'IDP')->textInput(['class' => 'form-control']); ?>
+                                            </div> -->
+                                            <div class="col-sm-11">
+                                                <?= $form->field($modelOrder, 'IDP')->widget(
+                                                    Chosen::className(), [
+                                                    'items' => $listClients,
+                                                    'id' => 'OrderIDP',
+                                                    'placeholder'=>'Buscar Cliente',
+                                                    'allowDeselect' => true,
+                                                    'disableSearch' => false, // Search input will be disabled
+                                                    'clientOptions' => [
+                                                      'search_contains' => true,
+                                                      'max_selected_options' => 1,
+                                                    ],
+                                                    ])->label('Nombre, Cedula, Razon Social o RIF'); 
+                                                ?>
                                             </div>
-                                            <?php 
-                                                // echo  $form->field($modelOrder, 'IDP')->widget(
-                                                // Chosen::className(), [
-                                                // 'items' => $listClients,
-                                                // 'id' => 'OrderIDP',
-                                                // 'placeholder'=>'Buscar Cliente',
-                                                // 'allowDeselect' => true,
-                                                // 'disableSearch' => false, // Search input will be disabled
-                                                // 'clientOptions' => [
-                                                //   'search_contains' => true,
-                                                //   'max_selected_options' => 1,
-                                                // ],
-                                                // ])->label(false); 
-                                            ?>
                                             <div class="col-sm-12">
                                             <?= Html::activeLabel($modelClient, 'IDP'); ?>
                                             <?= Html::input('number','idppp','',['class' => 'form-control','id'=>'clientidp', 'type'=>'number', 'disabled'=>true]); ?>
@@ -294,6 +295,7 @@ $JS = "
             $.post('".$urlHom."/system/dataclient',{fname : selectch},function(e){
                 let obj = JSON.parse(e);
                 if(obj.error == false){
+                    $('#Cidentify').val(obj.Identify);
                     $('#ClientIDdt').val(obj.ClientID);
                     $('#clientidp').val(obj.IDP);
                     $('#clientidph').val(obj.IDP);
@@ -337,6 +339,7 @@ $JS = "
                 $.post('".$urlHom."/system/dataclient',{id : selectch},function(e){
                         let obj = JSON.parse(e);
                         if(obj.error == false){
+                            $('#Cidentify').val(obj.Identify);
                             $('#ClientIDdt').val(obj.ClientID);
                             $('#clientidp').val(obj.IDP);
                             $('#clientidph').val(obj.IDP);

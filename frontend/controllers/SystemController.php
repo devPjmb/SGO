@@ -171,7 +171,7 @@
 			$data['error'] = false;
 			
 
-			$model = (!empty($_POST['id'])) ? Clients::findOne(['IDP'=>$_POST['id']]) : Clients::findOne(['FullName'=>$_POST['fname']]);
+			$model = (!empty($_POST['id'])) ? Clients::findOne(['ClientID'=>$_POST['id']]) : Clients::findOne(['FullName'=>$_POST['fname']]);
 
 			if ($model == null) {
 				echo json_encode(['error'=>true]);
