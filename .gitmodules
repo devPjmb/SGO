@@ -1,0 +1,3 @@
+[submodule "vendor/giggsey/libphonenumber-for-php"]
+	path = vendor/giggsey/libphonenumber-for-php
+	url = git://github.com/giggsey/libphonenumber-for-php.git
