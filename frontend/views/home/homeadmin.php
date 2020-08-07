@@ -7,5 +7,5 @@ use frontend\assets\AppAssetLayoutAll;
 	<div>
 		<img src="<?= Yii::getAlias("@web"); ?>/images/logo.png" class="img-rounded" style=";width: auto; height: 200px;">
 	</div>
-	<h1>Bienvenido usuario administrador!</h1>
+	<h1>Bienvenido usuario administrador</h1>
 </div>
