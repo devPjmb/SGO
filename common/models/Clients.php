@@ -5,7 +5,6 @@
 	use yii\base\Model;
 	use yii\base\NotSupportedException;
 	use yii\db\ActiveRecord;
-	use common\components\PhoneInput\PhoneInputValidator;
 	
 	class Clients extends ActiveRecord
 	{
@@ -24,7 +23,7 @@
 	            [['Address','Address2','Email'], 'string','max' => 128],
 	            [['Identify'], 'string','max' => 1],
 	            [['PhoneNumber','PhoneNumber2'], 'string'],
-	            [['PhoneNumber','PhoneNumber2'],PhoneInputValidator::className()],
+	            [['PhoneNumber','PhoneNumber2'],'integer'],
 	            [['IDP'],'unique'],
 	            [['IDP'],'integer', 'integerOnly'=>true],
 

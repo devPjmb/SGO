@@ -53,6 +53,16 @@ use frontend\assets\AppAssetLayoutAll;
                 'contentOptions'=>['style'=>' vertical-align:middle;'],
             ],
             [
+                'attribute' => 'Orden',
+                'label' => 'Usuario',
+                'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
+                'value' => function ($data) {
+                    return $data->userAccount->UserName; // $data['name'] for array data, e.g. using SqlDataProvider.
+                },
+                'format' => 'text',
+                'contentOptions'=>['style'=>' vertical-align:middle;'],
+            ],
+            [
                 'attribute' => 'Generacion',
                 'class' => 'yii\grid\DataColumn',
                 'value' => function ($data) {
@@ -63,7 +73,7 @@ use frontend\assets\AppAssetLayoutAll;
                 'contentOptions'=>['style'=>'vertical-align:middle;'],
             ],
             [
-                'attribute' => 'Correo Electronico',
+                'attribute' => 'Email',
                 'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
                 'value' => function ($data) {
                     return $data->clients->Email; // $data['name'] for array data, e.g. using SqlDataProvider.
@@ -84,17 +94,20 @@ use frontend\assets\AppAssetLayoutAll;
                 'attribute' => 'TotalAmount',
                 'format' => 'text',
                 'contentOptions'=>['style'=>'vertical-align:middle;'],
-            ],
-            [
-                'attribute' => 'PaymentAmount',
-                'format' => 'text',
-                'contentOptions'=>['style'=>'vertical-align:middle;'],
+                'label'=>'Total'
             ],
             [
                 'attribute' => 'RemainingAmount',
                 'format' => 'text',
                 'contentOptions'=>['style'=>'vertical-align:middle;'],
-            ]
+                'label'=>'Restante'
+            ],
+            [
+                'attribute' => 'PaymentAmount',
+                'format' => 'text',
+                'contentOptions'=>['style'=>'vertical-align:middle;'],
+                'label'=>'Abonado'
+            ],
             
         ],
         'clientOptions' => [

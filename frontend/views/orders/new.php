@@ -13,7 +13,7 @@ use common\components\datepicker\DatePicker;
 
 use common\components\chosen\Chosen;
 use common\components\datatables\DataTables;
-use common\components\PhoneInput\PhoneInput;
+
 $this->title = 'Generar Nueva Orden';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -25,8 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <br> 
     <div class="container-fluid">
         <div class="row-fluid">
-            <?php $form = ActiveForm::begin(['action' =>['generate'], 'id' => 'create-Order', 'method' => 'post','enableClientValidation' => true,
-     ]); ?> 
+            <?php $form = ActiveForm::begin(['action' =>['generate'], 'id' => 'create-Order', 'method' => 'post']); ?> 
             <div class="row-fluid">
                 <div class="panel panel-info">
                     <div class="panel-heading" style="display: flex;justify-content: center;align-items: center;">
@@ -87,11 +86,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <?= $form->field($modelClient, 'PhoneNumber')->widget(PhoneInput::className(), ['jsOptions' => ['preferredCountries' => ['ve'],]]);?>
+                                            <?= $form->field($modelClient, 'PhoneNumber')->textInput(['class' => 'form-control','id'=>'Cphonenumber', 'placeholder'=>'+584121234567']);?>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <?= $form->field($modelClient, 'PhoneNumber2')->widget(PhoneInput::className(), ['jsOptions' => ['preferredCountries' => ['ve'],]]);?>
+                                                <?= $form->field($modelClient, 'PhoneNumber2')->textInput(['class' => 'form-control','id'=>'Cphonenumber2', 'placeholder'=>'+584121234567']);?>
                                             </div>
                                         </div>
                                     </div>
@@ -301,16 +300,16 @@ $JS = "
                     $('#clientidph').val(obj.IDP);
                     $('#CfullName').val(obj.FullName);
                     $('#Cemail').val(obj.Email);
-                    $('#clients-phonenumber').val(obj.PhoneNumber);
-                    $('#clients-phonenumber2').val(obj.PhoneNumber2);
+                    $('#Cphonenumber').val(obj.PhoneNumber);
+                    $('#Cphonenumber2').val(obj.PhoneNumber2);
                     $('#Caddress').val(obj.Address);
                     $('#Caddress2').val(obj.Address2);
                 }else{
                     console.log('Buscando por nombre: '+selectch)
                     $('#CfullName').val();
                     $('#Cemail').val();
-                    $('#clients-phonenumber').val();
-                    $('#clients-phonenumber2').val();
+                    $('#Cphonenumber').val();
+                    $('#Cphonenumber2').val();
                     $('#Caddress').val();
                     $('#Caddress2').val();
                     $('#ClientIDdt').val();
@@ -322,8 +321,8 @@ $JS = "
             console.log('sin datos '+selectch);
             $('#CfullName').val();
             $('#Cemail').val();
-            $('#clients-phonenumber').val();
-            $('#clients-phonenumber2').val();
+            $('#Cphonenumber').val();
+            $('#Cphonenumber2').val();
             $('#Caddress').val();
             $('#Caddress2').val();
             $('#ClientIDdt').val();
@@ -345,16 +344,16 @@ $JS = "
                             $('#clientidph').val(obj.IDP);
                             $('#CfullName').val(obj.FullName);
                             $('#Cemail').val(obj.Email);
-                            $('#clients-phonenumber').val(obj.PhoneNumber);
-                            $('#clients-phonenumber2').val(obj.PhoneNumber2);
+                            $('#Cphonenumber').val(obj.PhoneNumber);
+                            $('#Cphonenumber2').val(obj.PhoneNumber2);
                             $('#Caddress').val(obj.Address);
                             $('#Caddress2').val(obj.Address2);
                         }else{
                             console.log(selectch)
                             $('#CfullName').val();
                             $('#Cemail').val();
-                            $('#clients-phonenumber').val();
-                            $('#clients-phonenumber2').val();
+                            $('#Cphonenumber').val();
+                            $('#Cphonenumber2').val();
                             $('#Caddress').val();
                             $('#Caddress2').val();
                             $('#ClientIDdt').val();
@@ -370,8 +369,8 @@ $JS = "
                     console.log('sin datos '+selectch);
                     $('#CfullName').val();
                     $('#Cemail').val();
-                    $('#clients-phonenumber').val();
-                    $('#clients-phonenumber2').val();
+                    $('#Cphonenumber').val();
+                    $('#Cphonenumber2').val();
                     $('#Caddress').val();
                     $('#Caddress2').val();
                     $('#ClientIDdt').val();
@@ -388,31 +387,22 @@ $JS = "
             // $('#orders-idp').trigger('chosen:updated');
             $('#CfullName').val('');
             $('#Cemail').val('');
-            $('#clients-phonenumber').val('');
-            $('#clients-phonenumber2').val('');
+            $('#Cphonenumber').val('');
+            $('#Cphonenumber2').val('');
             $('#Caddress').val('');
             $('#Caddress2').val('');
             $('#ClientIDdt').val('');
             $.fn.yiiactiveform.validate($('#create-Order'));
             });
     $('.cRestAmount').keyup(function(event){
-        console.log('hole');
-
-        if(  isNaN($('#tAmount').val())  ){
-            console.log('nantAmount');
+        if(isNaN($('#tAmount').val())){
             var ta = 0;
         }else{
-             console.log($('#tAmount').val());
             var ta = $('#tAmount').val();
         }
-
-        if(  isNaN($('#pAmount').val())  ){
-            console.log('nanPAmount');
-
+        if(isNaN($('#pAmount').val())){
             var pa = 0;
         }else{
-            console.log($('#pAmount').val());
-
             var pa = $('#pAmount').val();
         }
         $('#rAmount').val(ta - pa)

@@ -5,7 +5,6 @@
 	use yii\base\Model;
 	use yii\base\NotSupportedException;
 	use yii\db\ActiveRecord;
-	use common\components\PhoneInput\PhoneInputValidator;
 	
 	class Agency extends ActiveRecord
 	{
@@ -23,7 +22,7 @@
 	            [['FirstName','LastName','CompanyName'], 'string','max' => 32],
 	            [['Address1','Address2'], 'string','max' => 128],
 	            [['BusinessPhone','City'], 'string','max' => 16],
-	            [['BusinessPhone'],PhoneInputValidator::className()],
+	            [['BusinessPhone'],'integer'],
 	            [['State'], 'string','max' => 32],
 	            [['ZipCode','Extension'], 'string','max' => 8],
 	            [['CompanyWebSite'], 'string','max' => 256],
