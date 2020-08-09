@@ -108,7 +108,7 @@
 						}
 						if($failfase == 0){
 							$transaction->commit();
-							$sms_body = "ISLAPIXEL *Orden N ".$ordernumber."* ".$deliverydate." 22/08/19 06:00 PM Total: ".$total_amount.", Abono: ".$payment_amount.", Resta: ".$remaining_amount." Informacion al 04268882241 Gracias por ser nuestro cliente!";
+							$sms_body = "ISLAPIXEL *Orden N ".$ordernumber."* ".$deliverydate." Total: ".$total_amount.", Abono: ".$payment_amount.", Resta: ".$remaining_amount." Informacion al 04268882241 Gracias por ser nuestro cliente!";
 							//var_dump($phone_client.' '.$sms_body);die();
 							$this->fSendsms($phone_client,$sms_body);
 							Yii::$app->session->setFlash('success', "Orden Generada de forma exitosa.Numero de orden: ".$ordernumber);
