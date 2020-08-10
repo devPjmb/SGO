@@ -5,7 +5,6 @@ use yii\helpers\Html;
 use yii\bootstrap\Button;
 use yii\bootstrap\ActiveForm;
 use common\components\datatables\DataTables;
-use common\components\PhoneInput\PhoneInput;
 $this->title = 'Clientes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -155,11 +154,11 @@ $this->params['breadcrumbs'][] = $this->title;
                  <div class="row">
                     <div class="col-sm-6">   
                         <!-- <?= $form->field($model, 'PhoneNumber')->textInput(['maxlength' => true,'type'=>'number']); ?> -->
-                        <?= $form->field($model, 'PhoneNumber')->widget(PhoneInput::className(), ['id'=>'create-number','jsOptions' => ['preferredCountries' => ['ve'],]]);?>
+                        <?= $form->field($model, 'PhoneNumber')->textInput(['maxlength' => true,'type'=>'number', 'placeholder' => '+584121234567']);?>
                     </div>
                     <div class="col-sm-6">   
                         <!-- <?= $form->field($model, 'PhoneNumber2')->textInput(['maxlength' => true,'type'=>'number']); ?> -->
-                        <?= $form->field($model, 'PhoneNumber2')->widget(PhoneInput::className(), ['jsOptions' => ['preferredCountries' => ['ve'],]]);?>
+                        <?= $form->field($model, 'PhoneNumber2')->textInput(['maxlength' => true,'type'=>'number', 'placeholder' => '+584121234567']);?>
                     </div>
                 </div>
                 <div class="row">
@@ -210,11 +209,11 @@ $this->params['breadcrumbs'][] = $this->title;
                  <div class="row">
                     <div class="col-sm-6">   
                         <!-- <?= $form->field($model, 'PhoneNumber')->textInput(['maxlength' => true,'type'=>'number','id'=>'pnumber']); ?> -->
-                        <?= $form->field($model, 'PhoneNumber')->widget(PhoneInput::className(), ['jsOptions' => ['preferredCountries' => ['ve'],],'options' =>['id'=>'pnumber']]);?>
+                        <?= $form->field($model, 'PhoneNumber')->textInput(['maxlength' => true,'type'=>'number','id'=>'pnumber', 'placeholder' => '+584121234567']);?>
                     </div>
                     <div class="col-sm-6">   
                       <!--   <?= $form->field($model, 'PhoneNumber2')->textInput(['maxlength' => true,'type'=>'number','id'=>'pnumber2']); ?> -->
-                        <?= $form->field($model, 'PhoneNumber2')->widget(PhoneInput::className(), ['jsOptions' => ['preferredCountries' => ['ve'],],'options' =>['id'=>'pnumber2']]);?>
+                        <?= $form->field($model, 'PhoneNumber2')->textInput(['maxlength' => true,'type'=>'number','id'=>'pnumber2', 'placeholder' => '+584121234567']);?>
                     </div>
                 </div>
                 <div class="row">
