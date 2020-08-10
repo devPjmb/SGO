@@ -30,4 +30,9 @@
 			});
 			return $this->render('index', $data);
 		}
+
+		public function actionGenerate()
+		{
+			var_dump($_POST);exit();
+		}
 	}

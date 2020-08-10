@@ -24,9 +24,9 @@
     <div class="row-fluid">
     <?php $form = ActiveForm::begin(['action' =>['generate'], 'id' => 'generate', 'method' => 'post','enableClientValidation' => true,
      ]); ?> 
-        <div class="form-group col-lg-6">
-            <?= $form->field($modelUser, 'AccountID')->widget(
-                Chosen::className(), [
+        <div class="form-group col-lg-4">
+            <?= Chosen::widget([
+                'name' => 'userName',
                 'items' => $listUser,
                 'id' => 'OrderIDP',
                 'placeholder'=>'Buscar Usuario',
@@ -36,23 +36,39 @@
                   'search_contains' => true,
                   'max_selected_options' => 1,
                 ],
-                ])->label('Usuario'); 
+                ]); 
             ?>
         </div>
-        <div class="form-group col-lg-6">
-            <?= $form->field($modelUser, 'AuditDate')->widget(
-                DatePicker::className(),[
+        <div class="form-group col-lg-4">
+            <?= DatePicker::widget([
+                'name' => 'startDate',
                     'options' => [
-                        'class' => 'form-control'
+                        'class' => 'form-control',
+                        'placeholder' => 'Fecha de Inicio'
                     ],
                     'clientOptions' => [
-                        'format' => 'YYYY-MM-DD', 'stepping' => 30
+                        'format' => 'YYYY-MM-DD', 
+                        'stepping' => 30,
                     ]
-                ])->label('Desde');
+                ]);
+            ?>
+        </div>
+        <div class="form-group col-lg-4">
+            <?= DatePicker::widget([
+                'name' => 'endDate',
+                    'options' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Fecha Final'
+                    ],
+                    'clientOptions' => [
+                        'format' => 'YYYY-MM-DD', 
+                        'stepping' => 30,
+                    ]
+                ]);
             ?>
         </div>
         <div class="col-lg-12" style="display: flex;justify-content: center;align-items: center;">
-            <?= Html::submitButton('Generar', ['class' => 'btn btn-color-especial click-confirm', "style"=>'width:25%']) ?>
+            <?= Html::submitButton('Generar', ['class' => 'btn btn-color-especial', "style"=>'width:25%']) ?>
         </div>
     <?php ActiveForm::end(); ?>
     </div>
