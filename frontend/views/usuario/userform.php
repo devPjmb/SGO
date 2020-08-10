@@ -71,7 +71,7 @@ use frontend\assets\AppAssetLayoutAll;
                                     
                                      <!-- <?= $form->field($ModelAgency,'BusinessPhone')->TextInput(['maxlength' => true]);?> -->
 
-                                     <?= $form->field($ModelAgency, 'BusinessPhone')->widget(PhoneInput::className(), ['jsOptions' => ['preferredCountries' => ['ve'],]]);?>
+                                     <?= $form->field($ModelAgency, 'BusinessPhone')->TextInput(['maxlength' => true]);?>
                                 </div>
                                  <div class="col-sm-6">
                                      <?= $form->field($ModelAgency, 'ZipCode')->TextInput(['maxlength' => true]); ?>
