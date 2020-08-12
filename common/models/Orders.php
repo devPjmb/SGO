@@ -101,7 +101,6 @@
 	    {
 	    	return OrderByPhase::find()->select(['COUNT(*) As TotalOrdersNotComplete'])->where(['AccountID'=>$AccountID])->andwhere(['Status' => '4'])->all();
 	    }
-
 	}
 
 ?>
