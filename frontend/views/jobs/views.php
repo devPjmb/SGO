@@ -1,32 +1,33 @@
 <?php
  
-use frontend\assets\AppAssetLayoutAll;
-AppAssetLayoutAll::register($this);
- 
-use frontend\assets\AppAsset;
-use yii\helpers\Html;
-use yii\bootstrap\Button;
-use yii\bootstrap\ActiveForm;
-//use DateTime;
+    use frontend\assets\AppAssetLayoutAll;
+    AppAssetLayoutAll::register($this);
+     
+    use frontend\assets\AppAsset;
+    use yii\helpers\Html;
+    use yii\bootstrap\Button;
+    use yii\bootstrap\ActiveForm;
+    //use DateTime;
 
-use common\components\chosen\Chosen;
-use common\components\datatables\DataTables;
-$this->title = 'Orden de Produccion';
-$this->params['breadcrumbs'][] = $this->title;
+    use common\components\chosen\Chosen;
+    use common\components\datatables\DataTables;
+    use common\components\datepicker\DatePicker;
 
-function myFdateView($fdate){
-             $DateDT = new DateTime($fdate);
-             $AR = explode('T',$DateDT->format(DateTime::ISO8601));
-             $HR = explode('-', $AR[1]);
-             if(!isset($HR[1])){
-                $HR = explode('+', $AR[1]);
-             }
-             $AR = explode('-', $AR[0]);
-             $FH = $AR[2].'/'.$AR[1].'/'.$AR[0].' '.$HR[0];
-             return $FH;
-        }
-?>
- 
+    $this->title = 'Orden de Produccion';
+    $this->params['breadcrumbs'][] = $this->title;
+
+    function myFdateView($fdate){
+         $DateDT = new DateTime($fdate);
+         $AR = explode('T',$DateDT->format(DateTime::ISO8601));
+         $HR = explode('-', $AR[1]);
+         if(!isset($HR[1])){
+            $HR = explode('+', $AR[1]);
+         }
+         $AR = explode('-', $AR[0]);
+         $FH = $AR[2].'/'.$AR[1].'/'.$AR[0].' '.$HR[0];
+         return $FH;
+    }
+?> 
  
 <div class="HomeRole">
     <div style="width: 100%; align-items: center; justify-content: center; display: flex;">
@@ -97,19 +98,19 @@ function myFdateView($fdate){
                                             </div>
                                             <div class="col-sm-6" style="display: flex; flex-wrap: wrap; flex-direction: row-reverse;">
                                                 <div class="box-button" id="clbox">
-                                                            <?php switch (TRUE) {
-                                                                 case ($OrderByPhase->Status =='1'): ?>
-                                                                        <button" st="2" idcl="<?= $OrderByPhase->OrderByPhaseID; ?>" class=" btn btn-info advance">Iniciar</button>
-                                                            <?php break;
-                                                                     case ($OrderByPhase->Status == '2'):  ?>
-                                                                            <button st="3" idcl="<?= $OrderByPhase->OrderByPhaseID; ?>" class="btn btn-danger advance">Detener</button> <button st="4" idcl="<?= $OrderByPhase->OrderByPhaseID; ?>" class="btn btn-success advance">Completar</button>
-                                                            <?php break;
-                                                                    case ($OrderByPhase->Status == '3'): ?>
-                                                                         <button st="2"  idcl="<?= $OrderByPhase->OrderByPhaseID; ?>" class="btn btn-info advance">Continuar</button>
-                                                            <?php break;
-                                                                    default: $BlockButtons = false; ?>
-                                                                    <button class="btn btn-info">Fase Terminada</button>
-                                                            <?php break; } ?>
+                                                <?php switch (TRUE) {
+                                                     case ($OrderByPhase->Status =='1'): ?>
+                                                        <button" st="2" idcl="<?= $OrderByPhase->OrderByPhaseID; ?>" class=" btn btn-info advance">Iniciar</button>
+                                                <?php break;
+                                                         case ($OrderByPhase->Status == '2'):  ?>
+                                                            <button st="3" idcl="<?= $OrderByPhase->OrderByPhaseID; ?>" class="btn btn-warning advance"><i class="fa fa-stop"></i> Posponer</button> <button st="4" idcl="<?= $OrderByPhase->OrderByPhaseID; ?>" class="btn btn-success advance"><i class="fa fa-play"></i> Completar</button>
+                                                <?php break;
+                                                        case ($OrderByPhase->Status == '3'): ?>
+                                                             <button st="2"  idcl="<?= $OrderByPhase->OrderByPhaseID; ?>" class="btn btn-info advance"><i class="fa fa-play"></i>  Continuar</button>
+                                                <?php break;
+                                                        default: $BlockButtons = false; ?>
+                                                        <button class="btn btn-info">Fase Terminada</button>
+                                                <?php break; } ?>
                                                 </div>  
                                             </div>
                                         </div>
@@ -127,7 +128,6 @@ function myFdateView($fdate){
         </div>
     </div>
 </div>
-
 
 <?php 
 if (Yii::$app->session->hasFlash('success')):
@@ -151,51 +151,46 @@ endif;
 $urlHom = Yii::getAlias('@web');
 $JS = "
    $('.box-button').on('click','.advance',function(){
-
-         console.log('advance');
-       let st = $(this).attr('st');
-       let idcl = $(this).attr('idcl');
-       if(Form['index-'+idcl] == undefined){
+    console.log('advance');
+    let st = $(this).attr('st');
+    let idcl = $(this).attr('idcl');
+    
+    if(Form['index-'+idcl] == undefined){
         Form['index-'+idcl] = {};
         console.log('undefined');
-       }
-       Form['index-'+idcl].Status = st;
-        console.log(Form);
+    }
+    Form['index-'+idcl].Status = st;
+    console.log(Form);
 
-       switch(st){
+    switch(st){
         case '2':
-         console.log('swich2');
+            console.log('swich2');
             $('#clbox').fadeOut('slow',function(){
-                    $('#clbox').html('');
-                    $('#clbox').append('<button st=\"3\" idcl=\"'+idcl+'\" class=\"btn btn-danger advance\">Detener</button>');
-                    $('#clbox').append('<button st=\"4\" idcl=\"'+idcl+'\" class=\"btn btn-success advance\">Completar</button>');
+                $('#clbox').html('');
+                $('#clbox').append('<button st=\"3\" idcl=\"'+idcl+'\" class=\"btn btn-warning advance\"><i class=\"fa fa-stop\"></i> Posponer</button>');
+                $('#clbox').append('<button st=\"4\" idcl=\"'+idcl+'\" class=\"btn btn-success advance\"><i class=\"fa fa-play\"></i> Completar</button>');
             });
             $('#clbox').fadeIn('slow');
         break;
         case '3':
-         console.log('swich3');
-             $('#clbox').fadeOut('slow',function(){
-                    $('#clbox').html('<button st=\"2\" idcl=\"'+idcl+'\" class=\"btn btn-info advance\">Continuar</button>');
-             });
-             $('#clbox').fadeIn('slow');
+            console.log('swich3');
+            $('#clbox').fadeOut('slow',function(){
+                $('#clbox').html('<button st=\"2\" idcl=\"'+idcl+'\" class=\"btn btn-info advance\"><i class=\"fa fa-play\"></i> Continuar</button>');
+            });
+            $('#clbox').fadeIn('slow');
         break;
         case '4':
-         console.log('swich4');
+            console.log('swich4');
             $('#clbox').fadeOut('slow',function(){
-                $('#clbox').html('');
-                $('#clbox').append('<button st=\"3\" idcl=\"'+idcl+'\" class=\"btn btn-danger advance\">Detener</button>');
-                $('#clbox').append('<button class=\"btn btn-info advance\">Fase Terminada</button>');
-
+            $('#clbox').html('');
+                $('#clbox').append('<button st=\"3\" idcl=\"'+idcl+'\" class=\"btn btn-warning advance\"><i class=\"fa fa-stop\"></i> Posponer</button>');
+                $('#clbox').append('<button class=\"btn btn-info advance\"><i class=\"fa fa-check\"></i> Fase Terminada</button>');
                 // console.log($('#clbox'sg))
             });
             $('#clbox').fadeIn('slow');
         break;
-
        }
-
-
     });
-
     $('.ctest').click(function(){
        console.log(Form);
        location.reload();
@@ -210,8 +205,8 @@ $JSHead = "
         let data = JSON.stringify(Form);
         let Order = ".$OrderByPhase->OrderID."
         $.post('".$urlHom."/orders/processorder',{OrderProcess: data, Order: Order},function(r){
-                location.reload();
-            });
+            location.reload();
+        });
     }
 
 ";

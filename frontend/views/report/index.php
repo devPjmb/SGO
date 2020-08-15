@@ -149,13 +149,13 @@
                     'value' => function ($data) {
                         switch ($data->Status) {
                             case '1':
-                                $html = "<span class='badge badge-warning'> <i class='fa fa-check'></i> Iniciada</span>";
+                                $html = "<span class='badge badge-warning'> <i class='fa fa-play'></i> Iniciada</span>";
                                 break;
                             case '2':
-                                $html = "<span class='badge badge-primary'> <i class='fa fa-circle'></i> Completada</span>";
+                                $html = "<span class='badge badge-primary'> <i class='fa fa-check'></i> Completada</span>";
                                 break;
                             case '3':
-                                $html = "<span class='badge badge-success'> <i class='fa fa-circle'></i> Entregada</span>";
+                                $html = "<span class='badge badge-success'> <i class='fa fa-send'></i> Entregada</span>";
                                 break;
                         }
                         return $html;
