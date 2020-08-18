@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Button;
 use yii\bootstrap\ActiveForm;
 use common\components\datatables\DataTables;
-$this->title = 'Clientes';
+$this->title = 'Mis Ordenes';
 $this->params['breadcrumbs'][] = $this->title;
 
 function CalculateHoras($secons){
@@ -175,10 +175,8 @@ function FechaEsp ($fecha) {
                                     'template' => '<div class="btn-group" > {view}{delete} </div>',
                                     'buttons' => [
                                         'delete' => function($url, $model){
-                                            return Html::a('<span class="fa fa-trash"></span>', ['deleteorder', 'id' => $model->OrderID], [
-                                                'class' => 'btn btn-danger click-confirm',
-                                                'tittle-alert' => 'Eliminar información',
-                                                'text-alert'  => '¿Estás seguro? Cuando elimines el rol, no podrás recuperarlo más tarde.',
+                                            return Html::a('<span class="fa fa-clock-o"></span>', ['stoporder', 'id' => $model->OrderID], [
+                                                'class' => 'btn btn-warning',
                                             ]);
                                         },
                                         'view' => function($url, $model){
@@ -557,7 +555,6 @@ function FechaEsp ($fecha) {
                 ?>
             </div>    
         </div>
-
 
 
 

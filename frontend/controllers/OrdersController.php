@@ -111,6 +111,7 @@
 							$sms_body = "ISLAPIXEL *Orden N° ".$ordernumber."*. Total: ".$total_amount.", Abono: ".$payment_amount.", Resta: ".$remaining_amount." Informacion al 04268882241 Gracias por ser nuestro cliente!";
 							$this->fSendsms($phone_client,$sms_body);
 							Yii::$app->session->setFlash('success', "Orden Generada de forma exitosa.Numero de orden: ".$ordernumber);
+							//echo "aqui";die();
 							return $this->redirect(['/orders/new']);
 						}else{
 							$transaction->rollBack();
@@ -137,32 +138,36 @@
 
 		}
 		
-		public function actionDeleteorder($id)
+		public function actionStoporder($id)
 		{
-			$UserData =  Yii::$app->AccessControl->Verify([1]);
-			$this->layout = false;
+			$UserData =  Yii::$app->AccessControl->Verify([1,4]);
+			$this->layout = $UserData->getLayout();
 			$modelOrder = Orders::findOne($id);
-			$transaction = \Yii::$app->db->beginTransaction();
-			try {
+			$data = [];
+			$data['modelOrder'] = $modelOrder;
+
+			if ($_POST) {
+				$modelOrder->DeliveryDate = $this->myFdate($_POST['newDate']);
+				$msgToClient = $_POST['msgClient'];
 				if($UserData->IsAdminUser == 1){
-					if($modelOrder->delete()){
-						$transaction->commit();
-						Yii::$app->session->setFlash('success', "Order Eliminada");
+					if($modelOrder->save(false)){
+						Yii::$app->session->setFlash('success', "Orden Pospuesta");
+						$phone_client = str_replace("+58", "0", $modelOrder->clients->PhoneNumber);
+						$ordernumber = str_pad($modelOrder->OrderID, 5, '0', STR_PAD_LEFT);
+						$mensaje = 'ISLAPIXEL, su *Orden de Trabajo N '.$ordernumber.'*, fue pospuesta. Motivo: '.$msgToClient.' Informacion al 04268882241';
+						$this->fSendsms($phone_client, $mensaje);
 						$this->redirect(['/orders/my']);
 					}else{
-						Yii::$app->session->setFlash('error', "No se pudo eliminar la orden.");
-						$transaction->rollBack();
+						Yii::$app->session->setFlash('error', "No se pudo posponer la orden.");
 						$this->redirect(['/orders/my']);
 					}
 				}else{
-					Yii::$app->session->setFlash('error', "No tiene permisos de eliminar ordenes.");
+					Yii::$app->session->setFlash('error', "No tiene permisos de posponer ordenes.");
 					$this->redirect(['/orders/my']);
 				}
-			} catch (\Throwable $th) {
-				Yii::$app->session->setFlash('error', "No se pudo eliminar la orden. Error Capturado");
-				$transaction->rollBack();
-				$this->redirect(['/orders/my']);
 			}
+
+			return $this->render('stoporder', $data);
 		}
 
         public function actionMy() {
@@ -509,6 +514,7 @@
 			 	curl_setopt($handler, CURLOPT_URL, $sendUrl);
 			 	curl_setopt($handler, CURLOPT_HEADER, 0);
 			$response = curl_exec ($handler);
+			//return "===>".$response."<===";
         }
 
 

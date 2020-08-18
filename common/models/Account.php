@@ -49,6 +49,11 @@ class Account extends ActiveRecord
 	    return $this->hasMany(Orders::className(), ['AccountID' => 'AccountID'])->andOnCondition(['Status'=>3]);
 	}
 
+	public function getOrdersStop()
+	{
+	    return $this->hasMany(Orders::className(), ['AccountID' => 'AccountID'])->andOnCondition(['Status'=>4]);
+	}
+
 	public function getOrders()
 	{
 	    return $this->hasMany(Orders::className(), ['AccountID' => 'AccountID']);
