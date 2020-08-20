@@ -145,7 +145,6 @@
 			$modelOrder = Orders::findOne($id);
 			$data = [];
 			$data['modelOrder'] = $modelOrder;
-
 			if ($_POST) {
 				$modelOrder->DeliveryDate = $this->myFdate($_POST['newDate']);
 				$msgToClient = $_POST['msgClient'];
@@ -166,7 +165,6 @@
 					$this->redirect(['/orders/my']);
 				}
 			}
-
 			return $this->render('stoporder', $data);
 		}
 
