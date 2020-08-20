@@ -149,7 +149,7 @@
 			if ($_POST) {
 				$modelOrder->DeliveryDate = $this->myFdate($_POST['newDate']);
 				$msgToClient = $_POST['msgClient'];
-				if($UserData->IsAdminUser == 1){
+				if($UserData->TypeUser == 1 || $UserData->TypeUser == 4){
 					if($modelOrder->save(false)){
 						Yii::$app->session->setFlash('success', "Orden Pospuesta");
 						$phone_client = str_replace("+58", "0", $modelOrder->clients->PhoneNumber);
