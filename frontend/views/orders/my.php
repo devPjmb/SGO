@@ -172,9 +172,9 @@ function FechaEsp ($fecha) {
                                 ],
                                 [
                                     'class' => 'yii\grid\ActionColumn',
-                                    'template' => '<div class="btn-group" > {view}{delete} </div>',
+                                    'template' => '<div class="btn-group" > {view}{stop}{delete} </div>',
                                     'buttons' => [
-                                        'delete' => function($url, $model){
+                                        'stop' => function($url, $model){
                                             return Html::a('<span class="fa fa-clock-o"></span>', ['stoporder', 'id' => $model->OrderID], [
                                                 'class' => 'btn btn-warning',
                                             ]);
@@ -182,6 +182,13 @@ function FechaEsp ($fecha) {
                                         'view' => function($url, $model){
                                             return Html::a('<span class="fa fa-eye"></span>', ['views', 'id' => $model->OrderID], [
                                                 'class' => 'btn btn-info',
+                                            ]);
+                                        },
+                                        'delete' => function($url, $model){
+                                            return Html::a('<span class="fa fa-trash"></span>', ['deleteorder', 'id' => $model->OrderID], [
+                                                'class' => 'btn btn-danger click-confirm',
+                                                'tittle-alert' => 'Eliminar Orden',
+                                                'text-alert'  => '¿Estás seguro? Cuando elimines la orden, no podrás recuperarla más tarde.',
                                             ]);
                                         }
                                        

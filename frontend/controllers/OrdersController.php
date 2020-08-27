@@ -168,6 +168,34 @@
 			return $this->render('stoporder', $data);
 		}
 
+		public function actionDeleteorder($id)
+		{
+			$UserData =  Yii::$app->AccessControl->Verify([1,4]);
+			$this->layout = false;
+			$modelOrder = Orders::findOne($id);
+			$transaction = \Yii::$app->db->beginTransaction();
+			try {
+				if($UserData->IsAdminUser == 1 || $UserData->IsAdminUser == 4){
+					if($modelOrder->delete()){
+						$transaction->commit();
+						Yii::$app->session->setFlash('success', "Order Eliminada");
+						$this->redirect(['/orders/my']);
+					}else{
+						Yii::$app->session->setFlash('error', "No se pudo eliminar la orden.");
+						$transaction->rollBack();
+						$this->redirect(['/orders/my']);
+					}
+				}else{
+					Yii::$app->session->setFlash('error', "No tiene permisos de eliminar ordenes.");
+					$this->redirect(['/orders/my']);
+				}
+			} catch (\Throwable $th) {
+				Yii::$app->session->setFlash('error', "No se pudo eliminar la orden. Error Capturado");
+				$transaction->rollBack();
+				$this->redirect(['/orders/my']);
+			}
+		}
+
         public function actionMy() {
 			$UserData =  Yii::$app->AccessControl->Verify([1,2,4]);
 			// 1 = Users Admin
