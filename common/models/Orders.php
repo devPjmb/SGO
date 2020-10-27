@@ -22,7 +22,7 @@
 
 		public function rules() {
 			return [
-				[['AccountID','ClientID','DeliveryDate','TotalAmount','RemainingAmount','PaymentAmount','Identify','IDP'], 'required'],			
+				[['AccountID','ClientID','DeliveryDate','TotalAmount','RemainingAmount','PaymentAmount','Identify'], 'required'],			
 				[['Description','File','DeliveryDate'], 'string'],
 				[['Identify'], 'string','max' => 1],
 				[['AccountID','ClientID', 'IDP','Status'],'integer', 'integerOnly'=>true],

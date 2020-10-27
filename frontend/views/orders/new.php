@@ -298,6 +298,7 @@ $JS = "
                     $('#ClientIDdt').val(obj.ClientID);
                     $('#clientidp').val(obj.IDP);
                     $('#clientidph').val(obj.IDP);
+                    $('#clientidph').val(obj.IDP);
                     $('#CfullName').val(obj.FullName);
                     $('#Cemail').val(obj.Email);
                     $('#Cphonenumber').val(obj.PhoneNumber);
@@ -349,7 +350,7 @@ $JS = "
                             $('#Caddress').val(obj.Address);
                             $('#Caddress2').val(obj.Address2);
                         }else{
-                            console.log(selectch)
+                            console.log('asdf', selectch)
                             $('#CfullName').val();
                             $('#Cemail').val();
                             $('#Cphonenumber').val();
