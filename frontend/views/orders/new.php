@@ -120,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                                 <div class="panel-body" style="display: flex;justify-content: center;align-items: center; flex-wrap: wrap;">
                                     <?php foreach ($modelphases as $i => $D): ?>
-                                        <div class="row" style="cursor:pointer; width: 210px;height: 150px;display: flex;justify-content: center;align-items: center;background-color: <?= $D->UseColor; ?>;margin:10px;    box-shadow: 2px 2px 2px 0px gray;">
+                                        <div class="row" style="cursor:pointer; width: 210px;height: 150px;display: flex;justify-content: center;align-items: center;background-color: <?= $D->UseColor; ?>;margin:10px;    box-shadow: 2px 2px 2px 0px gray;"  >
                                             <div class="col-sm-12" style="display: flex; flex-direction: column; height: 100%; justify-content: flex-end;">
                                             <div class="row box-check" idclc="<?= $i; ?>" style="height: 100%; display: flex; justify-content: center; align-items: center;">
                                                 <div class="col-sm-3" style="display: flex;justify-content: center;align-items: center;">
@@ -219,7 +219,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                      <div class="panel-footer" style="display: flex;justify-content: center;align-items: center;">
-                        <?= Html::submitButton('Generar', ['class' => 'btn btn-color-especial click-confirm', "style"=>'width:30%']) ?>
+                        <?= Html::submitButton('Generar', ['class' => 'btn btn-color-especial click-confirm', "style"=>'width:100%']) ?>
                     </div>
                 </div>
             </div>
@@ -260,6 +260,13 @@ $JS = "
             $('#UpdateDescription').val(obj.Description);
         });
     });
+
+    $(document).on('click', '#tAmount', function(e){
+        console.log('entro')
+        if ($('input[type=checkbox]:checked').length === 0){
+            _Message('warning','¡Alerta!','Debe seleccionar por lo menos una (1) fase');
+        }
+    })
 
     $(document).on('click','.box-check', function(e){
         console.log('click')
