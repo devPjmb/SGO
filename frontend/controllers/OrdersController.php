@@ -108,8 +108,9 @@
 						}
 						if($failfase == 0){
 							$transaction->commit();
-							$sms_body = "ISLAPIXEL *Orden N° ".$ordernumber."*. Total: ".$total_amount.", Abono: ".$payment_amount.", Resta: ".$remaining_amount." Informacion al 04268882241 Gracias por ser nuestro cliente!";
-							$this->fSendsms($phone_client,$sms_body);
+							$sms_body = "ISLAPIXEL *Orden N ".$ordernumber."*. Total: ".$total_amount.", Abono: ".$payment_amount.", Resta: ".$remaining_amount." Informacion al 04268882241 Gracias por ser nuestro cliente!";
+							$fsms = $this->fSendsms($phone_client,$sms_body);
+							var_dump($fsms);exit;
 							Yii::$app->session->setFlash('success', "Orden Generada de forma exitosa.Numero de orden: ".$ordernumber);
 							//echo "aqui";die();
 							return $this->redirect(['/orders/new']);
@@ -532,15 +533,17 @@
 
 			$textEncode = urlencode($pMessage);
 
-			$parametros="PhoneNumber={$pPhone}&text={$textEncode}&user={$user}&password={$password}";
+			$parametros="phonenumber={$pPhone}&text={$textEncode}&user={$user}&password={$password}";
 
 			$sendUrl = $url.$parametros;
 
 			$handler = curl_init();
 			 	curl_setopt($handler, CURLOPT_URL, $sendUrl);
 			 	curl_setopt($handler, CURLOPT_HEADER, 0);
-			$response = curl_exec ($handler);
-			//return "===>".$response."<===";
+			curl_exec ($handler);
+
+			if(curl_errno($handler))
+				echo "Error: ".var_dump(curl_error($handler));
         }
 
 
