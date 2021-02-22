@@ -154,8 +154,11 @@
 						$phone_client = str_replace("+58", "0", $modelOrder->clients->PhoneNumber);
 						$ordernumber = str_pad($modelOrder->OrderID, 5, '0', STR_PAD_LEFT);
 						$mensaje = 'ISLAPIXEL, su *Orden de Trabajo N '.$ordernumber.'*, fue pospuesta. Motivo: '.$msgToClient.' Informacion al 04268882241';
-						$this->fSendsms($phone_client, $mensaje);
-						$this->redirect(['/orders/my']);
+						if(!$this->fSendsms($phone_client, $mensaje)){
+							Yii::$app->session->setFlash('error', "Ocurrio un error al momento de enviar el mensaje. EL mensaje no fue enviado, pero la orden si fue pospuesta.");
+							$this->redirect(['/orders/my']);
+						}
+							$this->redirect(['/orders/my']);
 					}else{
 						Yii::$app->session->setFlash('error', "No se pudo posponer la orden.");
 						$this->redirect(['/orders/my']);
@@ -541,8 +544,13 @@
 			 	curl_setopt($handler, CURLOPT_HEADER, 0);
 			curl_exec ($handler);
 
-			if(curl_errno($handler))
+			if(curl_errno($handler)){
 				echo "Error: ".var_dump(curl_error($handler));
+				return false;
+			}
+			else{
+				return true;
+			}
         }
 
 
