@@ -3,9 +3,9 @@
 	    'components' => [
 	        'db' => [
 	            'class' => 'yii\db\Connection',
-	            'dsn' => 'mysql:host=127.0.0.1;dbname=sgo_db',
-	            'username' => 'pablomarcano',
-	            'password' => '',
+	            'dsn' => 'mysql:host=pub.dns40.com;dbname=islapixe_sgo_temp',
+	            'username' => 'islapixe_root',
+	            'password' => 'tW!G7FnVJapiWpMH9+',
 	            'charset' => 'utf8',
 	        ],
 	        /*
