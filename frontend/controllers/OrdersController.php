@@ -544,13 +544,8 @@
 			 	curl_setopt($handler, CURLOPT_HEADER, 0);
 			curl_exec ($handler);
 
-			if(curl_errno($handler)){
+			if(curl_errno($handler))
 				echo "Error: ".var_dump(curl_error($handler));
-				return false;
-			}
-			else{
-				return true;
-			}
         }
 
 
